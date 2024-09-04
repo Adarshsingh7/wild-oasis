@@ -8,6 +8,8 @@ import CreateCabinForm from '../features/cabins/CreateCabinForm';
 function Cabins() {
   const [isFormOpen, setFormOpen] = useState(false);
 
+  const disableFormOpen = () => setFormOpen(false);
+
   return (
     <>
       <Row type="horizontal">
@@ -15,13 +17,9 @@ function Cabins() {
         <p>Filters/Sort</p>
       </Row>
 
-      <Row>
-        <CabinTable />
-        <Button onClick={() => setFormOpen((state) => !state)}>
-          Add cabin
-        </Button>
-        {isFormOpen && <CreateCabinForm />}
-      </Row>
+      <CabinTable />
+      <Button onClick={() => setFormOpen((state) => !state)}>Add cabin</Button>
+      {isFormOpen && <CreateCabinForm disableFormOpen={disableFormOpen} />}
     </>
   );
 }
